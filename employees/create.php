@@ -30,6 +30,11 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <title>Create Employee - PRAJ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" sizes="any" href="https://www.php.net/favicon.svg?v=2">
+    <link rel="icon" type="image/png" sizes="196x196" href="https://www.php.net/favicon-196x196.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.php.net/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.php.net/favicon-16x16.png?v=2">
+    <link rel="shortcut icon" href="https://www.php.net/favicon.ico?v=2">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 

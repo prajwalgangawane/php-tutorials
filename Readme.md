@@ -1,6 +1,4 @@
-# PHP Tutorials
-
-![PHP Tutorials](https://raw.githubusercontent.com/prajwalgangawane/php-tutorials/main/assets/php_tutorials.png)
+# PHP Tutorials ![PHP Tutorials](https://www.php.net/favicon-32x32.png?v=2)
 
 ## Introduction
 

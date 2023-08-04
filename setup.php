@@ -38,7 +38,7 @@ $sql = "CREATE TABLE IF NOT EXISTS " . $table . " (
 if ($conn->query($sql) === TRUE) {
     echo "Table " . $table . " created successfully<br>";
 } else {
-    echo "Error creating table: ".$conn->error."<br>";
+    echo "Error creating table: " . $conn->error . "<br>";
 }
 
 // Insert the provided data into the 'employees' table
@@ -55,7 +55,7 @@ $sql = "INSERT INTO " . $table . " (name, email, address, phone, password, isDel
 
 if ($conn->query($sql) === TRUE) {
     echo "Predefined data inserted successfully<br>";
-    time_nanosleep(3,0);
+    time_nanosleep(3, 0);
     header('location:/employees');
 
 } else {
