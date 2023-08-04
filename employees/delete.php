@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     UPDATE employees set isDeleted=1 where id=" . $_GET['id'];
     $result = mysqli_query($conn,$sql);
     if($result){
-        header('location:/crud');
+        header('location:/employees');
     }
     else{
         die(mysqli_error($conn));

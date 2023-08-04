@@ -1,3 +1,6 @@
+<?php
+include 'db_default.php';
+?>
 <!doctype html>
 <html>
 
@@ -25,10 +28,19 @@
   <h1 class="text-lg font-bold ">
     by Prajwal
   </h1>
+  <div class="bg-sky-800 text-white w-1/2 mt-2 flex p-3 hover:opacity-70 justify-between">
+    <div class="text-6xl rounded-full bg-black-200 m-1 mt-[-35px]"> .</div>
+    <a href="/employees" class="text-xl hover:text-gray-200"> CRUD DEMO - EMPLOYEES </a>
+    <div class="">
+      <?php echo $db_server . ':' . $database ?>
+    </div>
+  </div>
+
   <div class="bg-sky-800 text-white w-1/2 mt-2 flex p-3 hover:opacity-70">
     <div class="text-6xl rounded-full bg-black-200 m-1 mt-[-35px]"> .</div>
-    <a href="/crud" class="text-xl hover:text-gray-200"> CRUD DEMO - EMPLOYEES </a>
+    <a href="/settings" class="text-xl hover:text-gray-200"> Settings </a>
   </div>
+
 </body>
 
 </html>

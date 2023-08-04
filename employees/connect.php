@@ -1,8 +1,9 @@
 <?php
-$db_server = "localhost";
-$db_user = "user";
-$db_password = "password";
-$database = "practice";
+include '../db_default.php';
+// $db_server = "localhost";
+// $db_user = "user";
+// $db_password = "password";
+// $database = "practice";
 
 $conn = new mysqli($db_server, $db_user, $db_password, $database);
 if ($conn) {
