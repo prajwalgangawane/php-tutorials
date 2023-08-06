@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+require 'connect.php';
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -116,7 +116,7 @@ if (isset($_POST['submit'])) {
                         document.getElementById('message_message').innerHTML = message.message ?? 'This message is not defined!';
                         if (message.button) {
                             Object.keys(message.button).forEach(i => {
-                                if (['confirm', 'cancel'].includes(i)) {
+                                if (['confirm', 'cancel'].requires(i)) {
                                     document.getElementById('message_' + i).innerText = message.button[i].text ?? i.toUpperCase();
                                     document.getElementById('message_' + i).onclick = message.button[i].onclick ?? app.closeDialog;
                                 }

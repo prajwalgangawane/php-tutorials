@@ -1,6 +1,6 @@
 <?php
 // Replace these with your MySQL server credentials
-// include 'db_default.php';
+// require 'db_default.php';
 
 // Connect to MySQL server
 $conn = new mysqli($db_server, $db_user, $db_password);

@@ -1,5 +1,5 @@
 <?php
-include '../db_default.php';
+require '../db_default.php';
 
 $conn = new mysqli($db_server, $db_user, $db_password, $database);
 if ($conn) {

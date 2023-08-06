@@ -1,5 +1,5 @@
 <?php
-include 'db_default.php';
+require 'db_default.php';
 ?>
 <!doctype html>
 <html>

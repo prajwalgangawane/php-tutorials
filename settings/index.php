@@ -1,8 +1,8 @@
 <?php
-include '../db_default.php';
+require '../db_default.php';
 
 if (isset($_POST['submit'])) {
-    include '../clear.php';
+    require '../clear.php';
     $_SESSION["db_server"] = $_POST["db_server"];
     $_SESSION["db_user"] = $_POST["db_user"];
     $_SESSION["db_password"] = $_POST["db_password"];
@@ -11,17 +11,17 @@ if (isset($_POST['submit'])) {
 }
 
 if (isset($_POST['reset'])) {
-    include '../clear.php';
+    require '../clear.php';
     $_SESSION["db_server"] = "localhost";
     $_SESSION["db_user"] = "user";
     $_SESSION["db_password"] = "password";
     $_SESSION["database"] = "practice";
     $_SESSION["table"] = "employees";
-    include '../setup.php';
+    require '../setup.php';
 }
 
 if (isset($_POST['setup'])) {
-    include '../setup.php';
+    require '../setup.php';
 }
 ?>
 <!doctype html>

@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+require 'connect.php';
 
 if (isset($_GET['id'])) {
     // $sql = "delete from employees where id=" . $_GET['id'];
