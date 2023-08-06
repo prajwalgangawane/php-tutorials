@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION)) {
+if (!isset($_SESSION['db_server'])) {
     $_SESSION["db_server"] = "localhost";
     $_SESSION["db_user"] = "user";
     $_SESSION["db_password"] = "password";

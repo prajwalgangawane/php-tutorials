@@ -26,7 +26,11 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 }
-// print_r($row);
+
+if ($row['isDeleted']) {
+    echo '<script>alert("This user is being deleted, Please contact your administrator"); history.back();</script>';
+    exit();
+}
 ?>
 
 <!Doctype html>
@@ -61,7 +65,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="w-full justify-between flex">
                 <label>Email</label>
-                <input required type="email" name="email" class="border-2 border-gray-300"
+                <input readonly required type="email" name="email" class="border-2 border-gray-300"
                     placeholder="Enter your Email" value="<?php echo $row['email'] ?>" />
             </div>
             <div class="w-full justify-between flex">

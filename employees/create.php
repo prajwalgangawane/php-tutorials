@@ -8,19 +8,31 @@ if (isset($_POST['submit'])) {
     $phone = $_POST['phone'];
     $password = $_POST['password'];
 
-    $sql = "
-    INSERT INTO `" . $database . "`.`" . $table . "` (`name`, `email`, `address`, `phone`, `password`, `isDeleted`) 
-    VALUES ('$name', '$email', '$address', '$phone', '$password', 0)
-    ";
+    $get_sql = 'SELECT * FROM ' . $table . ' where email="' . $email . '" ;';
+    $get_result = mysqli_query($conn, $get_sql);
 
-    $result = mysqli_query($conn, $sql);
+    if ($row = mysqli_fetch_assoc($get_result)) {
+    } else {
+        $sql = "
+        INSERT INTO `" . $database . "`.`" . $table . "` (`name`, `email`, `address`, `phone`, `password`, `isDeleted`) 
+        VALUES ('$name', '$email', '$address', '$phone', '$password', 0)
+        ";
 
-    if ($result) {
-        // echo "Employee created successfully";
-        header('location:/employees');
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            // echo "<script>window.alert('Employee created successfully')</script>";
+            echo `
+            if (confirm('Employee created successfully')) {
+                header('location:/employees');
+            }
+            else {
+                alert('hello')
+            }
+            `;
+        }
     }
 }
-
 ?>
 
 <!Doctype html>
@@ -74,6 +86,90 @@ if (isset($_POST['submit'])) {
             </div>
         </form>
     </div>
+
+    <!-- HTML structure for the dialog -->
+    <div class="fixed inset-0 flex items-center justify-center ease-in-out z-1" id="dialogWrapper"
+        style="display: none;">
+        <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+        <div class="bg-white p-4 rounded-lg shadow-md z-10 px-5" id="dialog">
+            <div id="message_title" class="bg-red-200 top-0 text-lg px-5 -mx-6">
+                Message
+            </div>
+            <div id="message_message" class="p-5 flex items-start justify-start">Message Box</div>
+            <div class="flex items-start justify-between">
+                <button id="message_confirm" onclick="app.closeDialog()"
+                    class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">OK</button>
+                <button id="message_cancel" onclick="app.closeDialog()"
+                    class="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.app = {
+            openDialog: (message) => {
+                document.getElementById('dialogWrapper').style.display = 'flex';
+                console.log(typeof message)
+                switch (typeof message) {
+                    case 'object':
+                        document.getElementById('message_title').innerHTML = message.title ?? 'Message';
+                        document.getElementById('message_message').innerHTML = message.message ?? 'This message is not defined!';
+                        if (message.button) {
+                            Object.keys(message.button).forEach(i => {
+                                if (['confirm', 'cancel'].includes(i)) {
+                                    document.getElementById('message_' + i).innerText = message.button[i].text ?? i.toUpperCase();
+                                    document.getElementById('message_' + i).onclick = message.button[i].onclick ?? app.closeDialog;
+                                }
+                            })
+                        }
+                        break
+                    case 'string':
+                        document.getElementById('message_message').innerHTML = message;
+                }
+                console.log(message, document.getElementById('message_message'));
+            },
+            closeDialog: () => {
+                document.getElementById('dialogWrapper').style.display = 'none';
+                Object.assign([], document.getElementsByTagName('form')).pop().reset()
+            }
+        }
+
+        <?php
+
+        if (isset($_POST['submit'])) {
+            $get_sql = 'SELECT * FROM ' . $table . ' where email="' . $_POST['email'] . '" ;';
+            $get_result = mysqli_query($conn, $get_sql);
+            if ($row = mysqli_fetch_assoc($get_result)) {
+                echo "
+                app.openDialog({
+                    title: 'Message',
+                    message: 'Email already exsits for " . $email . "', button: {
+                        confirm: {
+                            text: 'Try Another',
+                            onclick: app.closeDialog
+                        },
+                        cancel: {
+                            text: 'Close',
+                            onclick: () => window.location.replace('/employees')
+                        }
+                    }
+                });";
+            } else {
+                echo "app.openDialog({
+                    title: 'Created successfully',
+                    message: 'Employee created successfully', button: {
+                        confirm: {
+                            text: 'OK',
+                            onclick: () => window.location.replace('/employees')
+                        },
+                    }
+                });";
+            }
+        }
+        ?>
+
+    </script>
+
 </body>
 
 </html>

@@ -80,8 +80,10 @@ include 'connect.php';
                         ' . $_address . '
                     </td>
                     <td class="py-2 border-x-2 px-6 flex bg-blue-400 text-white font-medium text-center">
-                        <a class="uppercase bg-green-500 self-end m-1 p-1 text-white" href="employees/update.php?id=' . $_id . '"> UPDATE </a>
-                        <a class="uppercase bg-red-500 self-end m-1 p-1 text-white" href="employees/delete.php?id=' . $_id . '"> DELETE </a>
+                        
+                    <a class="uppercase bg-green-500 self-end m-1 p-1 text-white" href="employees/update.php?id=' . $_id . '"> UPDATE </a>
+                        <button class="uppercase bg-red-500 self-end m-1 p-1 text-white"
+                            onclick="ConfirmBeforeDelete(`' . $_id . '`,`' . $_name . '`,`' . $_email . '`)"> DELETE </button>
                     </td>
                     </tr>
                     ';
@@ -90,11 +92,24 @@ include 'connect.php';
             }
             ?>
         </tbody>
+        <!-- <a class="uppercase bg-green-500 self-end m-1 p-1 text-white" href="employees/update.php?id=' . $_id . '"> UPDATE </a> -->
     </table>
+
     <a class="w-full pb-1 pt-5 justify-start flex" href='https://services.odata.org/northwind/northwind.svc/Employees'
         target="_blank">
         <div class="px-10"> Initial Data is fetch from Northwind ODATA Service</div>
     </a>
+    <!-- <a class="uppercase bg-red-500 self-end m-1 p-1 text-white" href="employees/delete.php?id=' . $_id . '"> DELETE </a> -->
+    <script type="text/javascript">
+        function ConfirmBeforeDelete(id, name, email) {
+            const message = [`Are you sure, you want to delete this user ?`, `ID: ${id}`, `Name: ${name}`, `Email: ${email}`].join('\r\n\t');
+            if (confirm(message)) {
+                window.location.href = '/employees/delete.php?id=' + id
+            } else {
+                alert("OPERATION CANCELLED BY USER");
+            }
+        }
+    </script>
 </body>
 
 </html>
