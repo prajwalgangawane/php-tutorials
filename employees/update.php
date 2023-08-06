@@ -24,12 +24,15 @@ if (isset($_POST['submit'])) {
 if (isset($_GET['id'])) {
     $sql = "select * from employees where id=" . $_GET['id'];
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-}
-
-if ($row['isDeleted']) {
-    echo '<script>alert("This user is being deleted, Please contact your administrator"); history.back();</script>';
-    exit();
+    if ($row = mysqli_fetch_assoc($result)) {
+        if ($row['isDeleted']) {
+            echo '<script>alert("This user is being deleted, Please contact your administrator"); history.back();</script>';
+            exit();
+        }
+    } else {
+        echo '<script>alert("There is nothing to show here!"); history.back();</script>';
+        exit();
+    }
 }
 ?>
 

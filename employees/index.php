@@ -64,23 +64,12 @@ include 'connect.php';
                     if (!$_isDeleted) {
                         echo '
                     <tr class="cursor-pointer hover:opacity-80 overflow-y-auto">
-                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">
-                        ' . $_id . '
-                    </td>
-                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">
-                        ' . $_name . '
-                    </td>
-                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">
-                        ' . $_email . '
-                    </td>
-                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">
-                        ' . $_phone . '
-                    </td>
-                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">
-                        ' . $_address . '
-                    </td>
+                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">' . $_id . '</td>
+                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">' . $_name . '</td>
+                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">' . $_email . '</td>
+                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">' . $_phone . '</td>
+                    <td class="py-2 border-x-2 px-6 bg-blue-400 text-white font-medium">' . $_address . '</td>
                     <td class="py-2 border-x-2 px-6 flex bg-blue-400 text-white font-medium text-center">
-                        
                     <a class="uppercase bg-green-500 self-end m-1 p-1 text-white" href="employees/update.php?id=' . $_id . '"> UPDATE </a>
                         <button class="uppercase bg-red-500 self-end m-1 p-1 text-white"
                             onclick="ConfirmBeforeDelete(`' . $_id . '`,`' . $_name . '`,`' . $_email . '`)"> DELETE </button>
