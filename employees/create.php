@@ -140,21 +140,6 @@ if (isset($_POST['submit'])) {
             $get_sql = 'SELECT * FROM ' . $table . ' where email="' . $_POST['email'] . '" ;';
             $get_result = mysqli_query($conn, $get_sql);
             if ($row = mysqli_fetch_assoc($get_result)) {
-                echo "
-                app.openDialog({
-                    title: 'Message',
-                    message: 'Email already exsits for " . $email . "', button: {
-                        confirm: {
-                            text: 'Try Another',
-                            onclick: app.closeDialog
-                        },
-                        cancel: {
-                            text: 'Close',
-                            onclick: () => window.location.replace('/employees')
-                        }
-                    }
-                });";
-            } else {
                 echo "app.openDialog({
                     title: 'Created successfully',
                     message: 'Employee created successfully', button: {
